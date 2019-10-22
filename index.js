@@ -15,7 +15,7 @@ app.use(cors());
 app.get("/",  (req, res) => {
    
     const movies = new connectDb.mongoose.model("movies",connectDb.moviesSchema)
-    movies.find({},function(err,data){
+    movies.find({ poster: { $exists: true}},function(err,data){
         res.json(data);
     }).limit(20);
     // user.find().toArray((error, result) => {
@@ -31,7 +31,7 @@ app.get("/getMovies/:pageIndex",  (req, res) => {
    
     let pageIndex = req.params.pageIndex;
     const movies = new connectDb.mongoose.model("movies",connectDb.moviesSchema)
-    movies.find({},function(err,data){
+    movies.find({ poster: { $exists: true}},function(err,data){
         res.json(data);
     }).skip(pageIndex*20).limit(20);
 
