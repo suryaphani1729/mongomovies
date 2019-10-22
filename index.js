@@ -39,10 +39,11 @@ app.get("/getMovies/:pageIndex",  (req, res) => {
  
 });
 
+const port = process.env.PORT || 8080;
 
 connectDb.connectDb().then(async () => {
-    app.listen(3000, () =>
-      console.log(`Example app listening on port 3000`),
+    app.listen(port, () =>
+      console.log(`MongoMovies app listening on port 3000`),
     );
   });
 
